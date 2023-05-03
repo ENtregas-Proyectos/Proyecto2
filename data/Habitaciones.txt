@@ -1,0 +1,9 @@
+101;Esquina;2;1;Queen;Estandar;Balcon;60000
+102;Centro;4;2;Queen,Queen;Estandar;Cocina Integrada;60000
+103;Esquina;6;4;Queen,Queen,Individual,Kid;Suite Doble;Vista;120000
+201;Centro;5;3;Queen,Queen,Kid;Suite;Balcon;90000
+202;Esquina;2;1;Queen;Suite;Vista;90000
+203;Centro;4;3;Queen,Sencilla,Kid;Suite;Cocina Integrada;90000
+301;Esquina;4;2;King,King;Suite Doble;Balcon y Cocina Integrada ;120000
+302;Centro;6;4;Queen,Queen,Individual,Kid;Suite;Cocina Integrada ;90000
+303;Esquina;5;3;King,Queen,Kid;Suite Doble; Balcon y Vista;120000
