@@ -15,16 +15,11 @@ public class PanelLogo extends JPanel
     public PanelLogo(VentanaPrincipal ventanaPrincipal)
     {
     	
-    	setLayout( new GridLayout( 1,3 ) );
-    	
-    	espacio = new JLabel();
-    	espacio.setBackground(Color.BLUE);
-    	add(espacio);
+    	setLayout( new GridLayout( 3,1 ) );
+
         etiquetaImagen = new JLabel( );
         add(etiquetaImagen);
-        ImageIcon icono= new ImageIcon( ".data/Screenshot 2023-05-02 at 8.26.17 PM.png" );
-        etiquetaImagen.setIcon( icono );
-        espacio = new JLabel();
-    	add(espacio);
+        ImageIcon icono= new ImageIcon( ".data/Screenshot 2023-05-02 at 8.26.17 PM.jpg" );
+
     }
 }

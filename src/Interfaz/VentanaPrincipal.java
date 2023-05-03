@@ -8,6 +8,7 @@ public class VentanaPrincipal extends JFrame
 {
 	
 	private PanelLogo panelLogo;
+	private PanelUsuarios panelCentro;
 	private PanelUsuarios panelUsuarios;
 	private VentanaPrincipal interfaz;
 	
@@ -32,6 +33,9 @@ public class VentanaPrincipal extends JFrame
                
         panelLogo= new PanelLogo(interfaz);
         add(panelLogo, BorderLayout.NORTH);
+        
+        panelCentro = new PanelUsuarios(this);
+        add(panelCentro, BorderLayout.CENTER);
 		
 	}
 	
