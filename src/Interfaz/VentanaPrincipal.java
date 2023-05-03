@@ -1,6 +1,7 @@
 package Interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 
@@ -24,8 +25,7 @@ public class VentanaPrincipal extends JFrame
 	
 	public VentanaPrincipal()
 	{
-		
-		setSize(900, 500);
+		setSize(1400, 500);
 		
 		setDefaultCloseOperation( DISPOSE_ON_CLOSE );
         setTitle( "PaginaPrincipal" );
