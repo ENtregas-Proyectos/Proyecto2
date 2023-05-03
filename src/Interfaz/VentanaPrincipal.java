@@ -9,6 +9,7 @@ public class VentanaPrincipal extends JFrame
 	
 	private PanelLogo panelLogo;
 	private PanelUsuarios panelUsuarios;
+	private VentanaPrincipal interfaz;
 	
 	
 	
@@ -26,10 +27,10 @@ public class VentanaPrincipal extends JFrame
 		setSize(900, 500);
 		
 		setDefaultCloseOperation( DISPOSE_ON_CLOSE );
-        setTitle( "LightsOut" );
+        setTitle( "PaginaPrincipal" );
         setLayout( new BorderLayout( ) );
                
-        panelLogo= new PanelLogo(this);
+        panelLogo= new PanelLogo(interfaz);
         add(panelLogo, BorderLayout.NORTH);
 		
 	}

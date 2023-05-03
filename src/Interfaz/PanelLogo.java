@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
@@ -17,6 +18,7 @@ public class PanelLogo extends JPanel
     	setLayout( new GridLayout( 1,3 ) );
     	
     	espacio = new JLabel();
+    	espacio.setBackground(Color.BLUE);
     	add(espacio);
         etiquetaImagen = new JLabel( );
         add(etiquetaImagen);
