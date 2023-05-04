@@ -20,6 +20,9 @@ public class PanelUsuarios extends JPanel implements ActionListener
 	private JButton btnCerrarSesion;
 	private Object nombre;
 	private String contrasena;
+	private String nombreNuevo;
+	private String login;
+	private String contrasenaNueva;
 
 	public PanelUsuarios(VentanaPrincipal ventanaPrincipal) 
 	{
@@ -63,28 +66,37 @@ public class PanelUsuarios extends JPanel implements ActionListener
 
 
         }
-        //else if(e.getSource( )==btnCrearCuenta)
-        //{
-        //	principal.reiniciar();
-        //	int dif = principal.darDificultad();
-          //  principal.desordenar();
-            //repaint();
-      
-        //}
-        
-        //else if(e.getSource()== btnCerrarSesion)
-        //{
-        //	dialogTop = new JDialog(principal);  
-          //  dialogTop.setLocationRelativeTo(principal);
-           // listadoNombres = top10.darRegistros();
-           // rank10 = new JList();
-           // rank10.setBorder(new TitledBorder("Rank"));
-           // dialogTop.add(rank10);
-           // dialogTop.setSize(400,500);
-           // dialogTop.setVisible(true);
-   
+        else if(e.getSource( )==btnCrearCuenta)
+        {
         	
-        //}
+        	nombreNuevo = JOptionPane.showInputDialog(this ,"Ingrese su nombre");
+        	login = JOptionPane.showInputDialog(this ,"Ingrese su nombre");
+            contrasenaNueva = JOptionPane.showInputDialog(this ,"Ingrese su Contraseña");
+            
+            dificultad = new JLabel("Dificultad: ");
+    		dificultad.setOpaque(true);
+    		add(dificultad);
+    		dificultad.setBackground(new Color(126, 205, 250));
+    		
+    		opcionDif1 = new JRadioButton("Facil");
+    		add(opcionDif1);
+    		
+    		opcionDif2 = new JRadioButton("Medio");
+    		add(opcionDif2);
+
+    		opcionDif3 = new JRadioButton("Dificil");
+    		add(opcionDif3);
+    		
+    		ButtonGroup bg = new ButtonGroup();
+    		bg.add(opcionDif1);bg.add(opcionDif2);bg.add(opcionDif3);
+
+      
+        }
+        
+        else if(e.getSource()== btnCerrarSesion)
+        {
+        	
+        }
 		
 	}
 
