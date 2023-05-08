@@ -23,10 +23,11 @@ public class PanelUsuarios extends JPanel implements ActionListener
 	private String nombreNuevo;
 	private String login;
 	private String contrasenaNueva;
+	private VentanaPrincipal principal;
 
-	public PanelUsuarios(VentanaPrincipal ventanaPrincipal) 
+	public PanelUsuarios(VentanaPrincipal principal) 
 	{
-		setLayout( new GridLayout( 8,1 ) );
+		setLayout( new GridLayout( 7,1 ) );
         
         espacio = new JLabel();
         add(espacio);
@@ -42,6 +43,7 @@ public class PanelUsuarios extends JPanel implements ActionListener
         btnCrearCuenta=new JButton( "CREAR NUEVA CUENTA");
         btnCrearCuenta.addActionListener( this );
         add(btnCrearCuenta);
+        btnCrearCuenta.setSize(100, 100);
         
         espacio = new JLabel();
         add(espacio);
@@ -49,9 +51,7 @@ public class PanelUsuarios extends JPanel implements ActionListener
         btnCerrarSesion=new JButton( "CERRAR SESION");
         add(btnCerrarSesion);
         btnCerrarSesion.addActionListener( this );
-        
-        espacio = new JLabel();
-        add(espacio); 
+
 
 	}
 
@@ -69,27 +69,13 @@ public class PanelUsuarios extends JPanel implements ActionListener
         else if(e.getSource( )==btnCrearCuenta)
         {
         	
-        	nombreNuevo = JOptionPane.showInputDialog(this ,"Ingrese su nombre");
-        	login = JOptionPane.showInputDialog(this ,"Ingrese su nombre");
-            contrasenaNueva = JOptionPane.showInputDialog(this ,"Ingrese su Contraseña");
+        	DialogoIniciarSesion dialogo= new DialogoIniciarSesion( principal );
+            dialogo.setLocationRelativeTo( principal );
+            dialogo.setVisible( true );
+        	
+        
             
-            dificultad = new JLabel("Dificultad: ");
-    		dificultad.setOpaque(true);
-    		add(dificultad);
-    		dificultad.setBackground(new Color(126, 205, 250));
-    		
-    		opcionDif1 = new JRadioButton("Facil");
-    		add(opcionDif1);
-    		
-    		opcionDif2 = new JRadioButton("Medio");
-    		add(opcionDif2);
-
-    		opcionDif3 = new JRadioButton("Dificil");
-    		add(opcionDif3);
-    		
-    		ButtonGroup bg = new ButtonGroup();
-    		bg.add(opcionDif1);bg.add(opcionDif2);bg.add(opcionDif3);
-
+           
       
         }
         
