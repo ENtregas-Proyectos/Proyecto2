@@ -20,6 +20,7 @@ public class VentanaPrincipal extends JFrame
     	
         VentanaPrincipal interfaz= new VentanaPrincipal();
         interfaz.setLocationRelativeTo( null );
+        interfaz.getContentPane().setBackground(new Color (244,238,226));
         interfaz.setVisible( true );
     }
 	
@@ -27,9 +28,12 @@ public class VentanaPrincipal extends JFrame
 	{
 		setSize(1400, 500);
 		
-		setDefaultCloseOperation( DISPOSE_ON_CLOSE );
+		//setDefaultCloseOperation( DISPOSE_ON_CLOSE );
+		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         setTitle( "PaginaPrincipal" );
+        
         setLayout( new BorderLayout( ) );
+        
                
         panelLogo= new PanelLogo(interfaz);
         add(panelLogo, BorderLayout.NORTH);

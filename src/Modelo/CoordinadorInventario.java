@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,7 +18,7 @@ import java.io.PrintWriter;
 
 public class CoordinadorInventario {
 	public static Hashtable<String, Habitacion> listaHabitaciones = new Hashtable<String , Habitacion>();
-	 File Cuartos= new File("./Proyect1/data/Habitaciones.txt");
+	 File Cuartos= new File("./data/Habitaciones.txt");
 
 	
 	public void mostrarMenu() {
@@ -76,42 +78,50 @@ public class CoordinadorInventario {
 		System.out.println("Añadir Cuarto Manualmente");
 		while (continuar) {
 			System.out.println("Cual es el nombre de la habitacion?");
-			 String nombre = input(" ");
-			 String ubicacion = input("Cual es la ubicacion de la habitacion?");
-			 int capacidad = Integer.parseInt(input("Cual es la capacidad de la habitacion?"));
-			 int camas =Integer.parseInt(input("Cuantas camas tiene la habitacion?"));
-		 	 String tamano= input("Cual es el tamano de las camas en la habitacion? \n(Si hay mas de una cama porfavor ingresar los tamanos separados por comas, ej Queen,King)");
-			 String tipo= input("Cual es el tipo de la habitacion?");
-			 String extras= input("Que caracteristicas extra tiene la habitacion?");
+			 String nombre = JOptionPane.showInputDialog("Ingrese el numero de la Habitacion");
+			 String ubicacion = JOptionPane.showInputDialog("Ingrese la ubicacion de la Habitacion: ");
+			 int capacidad = Integer.parseInt(JOptionPane.showInputDialog("Cual es la capacidad de la habiatcion :"));
+			 int camas =Integer.parseInt(JOptionPane.showInputDialog("Cuantas camas tiene la habitacion: "));
+			 String tamano = JOptionPane.showInputDialog("Cual es el tamano de las camas en la habitacion? \n(Si hay mas de una cama porfavor ingresar los tamanos separados por comas, ej Queen,King)");
+		 	 String tipo= JOptionPane.showInputDialog("Cual es el tipo de la habitacion?");
+			 String extras = JOptionPane.showInputDialog("Que caracteristicas extra tiene la habitacion?");
 			 ArrayList<String> TamanosCamas= arreglarTamano(tamano);
-			 String tarifa = input("Cual es la tarifa de la habitacion");
+			 String tarifa = JOptionPane.showInputDialog("Cual es la tarifa de la habitacion");
 			 Habitacion nuevo = new Habitacion(nombre, ubicacion, capacidad, camas, TamanosCamas, tipo, extras, tarifa);
 			 listaHabitaciones.put(nombre, nuevo);
 			 continuar=false;
+			 System.out.print("listo");
+			 
+			 
+			 
+			 
+			 
+		
 	}
 		
 		
 	}
 	public void modificarCuarto() {
-		String viejo = input("Cual es el nombre de la habitacion que desea modificar?");
+		String viejo = JOptionPane.showInputDialog("Cual es el nombre de la habitacion que desea modificar?");
 		Habitacion aModificar = listaHabitaciones.get(viejo);
 		mostrarHabitacion(aModificar);
 		System.out.println(" A continuacion ingrese la nueva infromacion para la habitacion "+aModificar.getNumero());
 		
 		
-	 	String nombre = input("Cual es el nombre de la habitacion? ");
-		String ubicacion = input("Cual es la ubicacion de la habitacion?");
-		int capacidad = Integer.parseInt(input("Cual es la capacidad de la habitacion?"));
-		int camas =Integer.parseInt(input("Cuantas camas tiene la habitacion?"));
-	 	String tamano2= input("Cual es el tamano de las camas en la habitacion? \n(Si hay mas de una cama porfavor ingresar los tamanos separados por comas, ej Queen,King)");
-		String tipo= input("Cual es el tipo de la habitacion?");
-		String extras= input("Que caracteristicas extra tiene la habitacion?");
+	 	String nombre = JOptionPane.showInputDialog("Cual es el nombre de la habitacion? ");
+		String ubicacion = JOptionPane.showInputDialog("Cual es la ubicacion de la habitacion?");
+		int capacidad = Integer.parseInt(JOptionPane.showInputDialog("Cual es la capacidad de la habitacion?"));
+		int camas =Integer.parseInt(JOptionPane.showInputDialog("Cuantas camas tiene la habitacion?"));
+	 	String tamano2= JOptionPane.showInputDialog("Cual es el tamano de las camas en la habitacion? \n(Si hay mas de una cama porfavor ingresar los tamanos separados por comas, ej Queen,King)");
+		String tipo= JOptionPane.showInputDialog("Cual es el tipo de la habitacion?");
+		String extras= JOptionPane.showInputDialog("Que caracteristicas extra tiene la habitacion?");
 		ArrayList<String> TamanosCamas2= arreglarTamano(tamano2);
-		String tarifa = input ("Cual es la tarifa de la habitacion");
+		String tarifa = JOptionPane.showInputDialog ("Cual es la tarifa de la habitacion");
 		Habitacion nuevo = new Habitacion(nombre, ubicacion, capacidad, camas, TamanosCamas2, tipo, extras, tarifa);
 	 	
 	 	listaHabitaciones.remove(viejo);
 	 	listaHabitaciones.put(nombre, nuevo);
+	 	System.out.println(listaHabitaciones.get(nombre).getExtra());
 	 	
 	 	
 	 	
@@ -132,40 +142,50 @@ public class CoordinadorInventario {
 			}
 			return null;
 		}
-	public void consultarInventario() {
+	public  List<String> consultarInventario() {
 	 Set<String> nombres = listaHabitaciones.keySet();
 	 Object[] nuevo = nombres.toArray();
+	 List<String> inventariofinal = new ArrayList<>();
 	 
 	 for ( int a =0 ; a< listaHabitaciones.size(); a++) {
-		 System.out.println("\nNombre: "+nuevo[a] +"-------------------------------" );
-		 System.out.println("\t\t Ubicacion: "+ listaHabitaciones.get(nuevo[a]).getUbicacion()+ "\n\t\t Capacidad: "+ listaHabitaciones.get(nuevo[a]).getCapacidad() +"\n\t\t Tipo: "+
-		 listaHabitaciones.get(nuevo[a]).getTipo()+"\n\t\t Caracteristicas Extra: "+ listaHabitaciones.get(nuevo[a]).getExtra()+"\n\t\t Tarifa: "+ listaHabitaciones.get(nuevo[a]).getTarifa()
-		 + "\n\t\t Tamano Camas: "+ listaHabitaciones.get(nuevo[a]).getTamano());
+		 String texto = "\nNombre: "+nuevo[a] +"--------------->";
+		 texto += ("\t\t Ubicacion: "+ listaHabitaciones.get(nuevo[a]).getUbicacion()+ "\n\t\t Capacidad: "+ listaHabitaciones.get(nuevo[a]).getCapacidad() +"\n\t\t Tipo: "+
+				 listaHabitaciones.get(nuevo[a]).getTipo()+"\n\t\t Caracteristicas Extra: "+ listaHabitaciones.get(nuevo[a]).getExtra()+"\n\t\t Tarifa: "+ listaHabitaciones.get(nuevo[a]).getTarifa()
+				 + "\n\t\t Tamano Camas: "+ listaHabitaciones.get(nuevo[a]).getTamano());
+		 //System.out.println("\t\t Ubicacion: "+ listaHabitaciones.get(nuevo[a]).getUbicacion()+ "\n\t\t Capacidad: "+ listaHabitaciones.get(nuevo[a]).getCapacidad() +"\n\t\t Tipo: "+
+		 //listaHabitaciones.get(nuevo[a]).getTipo()+"\n\t\t Caracteristicas Extra: "+ listaHabitaciones.get(nuevo[a]).getExtra()+"\n\t\t Tarifa: "+ listaHabitaciones.get(nuevo[a]).getTarifa()
+		 //+ "\n\t\t Tamano Camas: "+ listaHabitaciones.get(nuevo[a]).getTamano());
+		inventariofinal.add(texto);
 	 }
+	return inventariofinal;
 	
 	 }
-	public void consultarHabitacion() {
-		Habitacion aBuscar = listaHabitaciones.get(input("Cual es el nombre de la habitacion que desea consultar ? "));
-		mostrarHabitacion(aBuscar);
+	public List<String> consultarHabitacion(String habitacion) {
+		Habitacion aBuscar = listaHabitaciones.get(habitacion);
+		System.out.println(aBuscar);
+		List<String> respuesta = mostrarHabitacion(aBuscar);
+		return respuesta;
 		
 	}
-	private void mostrarHabitacion( Habitacion nombre) {
-		System.out.println("Esta es la informacion actual de la habitacion "+nombre.getNumero());
-		System.out.println("Nombre: "+nombre.getNumero());
-		System.out.println("Ubicacion: "+nombre.getUbicacion());
-		System.out.println("Capacidad: "+nombre.getCapacidad());
-		System.out.println("Camas: "+nombre.getCamas());
-		System.out.println("Tamano camas: "+nombre.getTamano());
-		System.out.println("Tipo: "+ nombre.getTipo());
-		System.out.println("Caracteristicas Extras:  "+nombre.getExtra());
-		System.out.println("Tarifa: "+nombre.getTarifa());
+	private List<String> mostrarHabitacion( Habitacion nombre) {
+		List <String> respuesta= new ArrayList <String>();
+		
+		respuesta.add("Nombre: "+nombre.getNumero()+ "\n");
+		respuesta.add("Ubicacion: "+nombre.getUbicacion()+ "\n");
+		respuesta.add("Capacidad: "+nombre.getCapacidad()+ "\n");
+		respuesta.add("Camas: "+nombre.getCamas()+ "\n");
+		respuesta.add("Tamano camas: "+nombre.getTamano()+ "\n");
+		respuesta.add("Tipo: "+ nombre.getTipo()+ "\n");
+		respuesta.add("Caracteristicas Extras:  "+nombre.getExtra()+ "\n");
+		respuesta.add("Tarifa: "+nombre.getTarifa()+ "\n");
+		
+		return respuesta;
 		
 	}
 		
 	public void cargarTarifa() {
-		System.out.println("Porfavor seleccione el tipo de cuarto para el cual desea modificar la tarifa");
-		System.out.println("1. Estandar \n2. Suite \n3. Suite Doble");
-		int tipoACambiar= Integer.parseInt(input("Por favor seleccione una opción:"));
+		int tipoACambiar = Integer.parseInt(JOptionPane.showInputDialog("Porfavor seleccione el tipo de cuarto para el cual desea modificar la tarifa\n 1. Estandar \\n2. Suite \\n3. Suite Doble "));
+		
 		String tipoFijo;
 		while (tipoACambiar > 3 || tipoACambiar <1) {
 			tipoACambiar = Integer.parseInt(input("Porfavor ingrese una opcion valida"));
@@ -179,7 +199,7 @@ public class CoordinadorInventario {
 		else {
 			tipoFijo = "Doble Suite";
 		}
-		String tarifa = input("Porfavor indique la tarifa que desea aplicar ");
+		String tarifa = JOptionPane.showInputDialog("Porfavor indique la tarifa que desea aplicar ");
 		Set<String> nombres = listaHabitaciones.keySet();
 		Object[] nuevo = nombres.toArray();
 		for ( int a =0 ; a< listaHabitaciones.size(); a++) {
@@ -197,7 +217,7 @@ public class CoordinadorInventario {
 
 	    try {
 	      // Creates a FileWriter
-	      FileWriter file = new FileWriter("./Proyect1/data/Inventario.txt");
+	      FileWriter file = new FileWriter("./data/Inventario.txt");
 
 	      // Creates a BufferedWriter
 	      BufferedWriter output = new BufferedWriter(file);
@@ -228,7 +248,7 @@ public class CoordinadorInventario {
 		listaHabitaciones.clear();
 	}
 	public void iniciar() {
-		File inventario= new File("./Proyect1/data/Inventario.txt");
+		File inventario= new File("./data/Inventario.txt");
 		try { 
 			BufferedReader br = new BufferedReader(new FileReader(inventario));
 			String linea = br.readLine();
@@ -258,23 +278,29 @@ public class CoordinadorInventario {
 	}
 	public void vaciarArchico() {
 		String data = "";
+		 System.out.print("paso por aca 1");
 
 	    try {
 	      // Creates a FileWriter
 	      FileWriter file = new FileWriter("./data/Inventario.txt");
+	      System.out.print("paso por aca 2");
 
 	      // Creates a BufferedWriter
 	      BufferedWriter output = new BufferedWriter(file);
+	      System.out.print("paso por aca 3");
 
 	      // Writes the string to the file
 	      output.write(data);
+	      System.out.print("paso por aca 4");
 
 	      // Closes the writer
 	      output.close();
+	      System.out.print("paso por aca 5");
 	    }
 
 	    catch (Exception e) {
 	      e.getStackTrace();
+	      System.out.print("CAOS");
 	    }
 	}
 }

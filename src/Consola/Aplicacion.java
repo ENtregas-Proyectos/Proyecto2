@@ -4,10 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import Interfaz.Pantalla_Habitacion;
+import Interfaz.Principal_admin;
 import Modelo.Administrador;//ESTO
+import Modelo.CoordinadorInventario;
 import Modelo.Hotel;//ESTO
 import Modelo.Recepcionista;
 import Modelo.Trabajador;
+import Interfaz.VentanaPrincipal;
 
 
 public class Aplicacion {
@@ -15,6 +22,7 @@ public class Aplicacion {
 	private static ArrayList<Administrador> listaAdministradores= new ArrayList<Administrador>();
 	private static ArrayList<Recepcionista> listaRecepcionista= new ArrayList<Recepcionista>();
 	private static ArrayList<Trabajador>listaTrabajadores = new ArrayList<Trabajador>();
+	
 	
 	public static void main(String[] args) {
 		Aplicacion consola = new Aplicacion();
@@ -46,45 +54,45 @@ public class Aplicacion {
 		System.out.println("3. Cerrar Aplicacion\n"); 
 	}
 	public void crearCuenta() {
-		String nombre = input ("\nIngrese su nombre: \n");
-		String login = input ("Ingrese su login: \n");
-		String clave = input ("Ingrese su clave: \n");
-		System.out.println("\nPorfavor Seleccione el tipo de empleado\n ");
-		System.out.println("1. Administrador \n2. Recepcionista \n3. Otro");
-		int opcion = Integer.parseInt(input(""));
+		String nombre2 = JOptionPane.showInputDialog(this ,"Ingrese su nombre");
+    	String login2 = JOptionPane.showInputDialog(this ,"Ingrese su login");
+        String contrasena2 = JOptionPane.showInputDialog(this ,"Ingrese su Contraseña");
+		int opcion = Integer.parseInt(JOptionPane.showInputDialog("Porfavor Seleccione el tipo de empleado\n 1. Administrador \\n2. Recepcionista \\n3. Otro "));
+		
 		if (opcion ==1 ) {
-			Administrador nuevo = new Administrador(nombre,login,clave);
+			Administrador nuevo = new Administrador(nombre2,login2,contrasena2);
 			listaAdministradores.add(nuevo);
 		}
 		else if (opcion ==2 ) {
-			Recepcionista nuevo = new Recepcionista(nombre,login,clave);
+			Recepcionista nuevo = new Recepcionista(nombre2,login2,contrasena2);
 			listaRecepcionista.add(nuevo);
 
 		}
 		else {
-			System.out.println("Opcion no valida ");
+			JOptionPane.showMessageDialog(null, "Archivo cargado", "Archivo", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
 	public void iniciarSesion() {
 		boolean encontrado = false;
-		System.out.println("\nPorfavor Seleccione el tipo de empleado:\n ");
-		System.out.println("1. Administrador \n2. Recepcionista \n3. Otro\n");
-		int opcion = Integer.parseInt(input(""));
-		String login = input("Ingrese su login:  ");
-		String clave = input("Ingrese su clave:  ");
+		int opcion =Integer.parseInt( JOptionPane.showInputDialog("Porfavor Seleccione el tipo de empleado: \n1. Administrador 2. Recepcionista 3. Otro "));
+		
+		String login = JOptionPane.showInputDialog("Ingrese su login:  ");
+		String clave = JOptionPane.showInputDialog("Ingrese su clave:  ");
 		if (opcion ==1 ) {
 			for (int a =0 ; a<listaAdministradores.size();a++) {
 				if (listaAdministradores.get(a).getLogin().equals(login) && listaAdministradores.get(a).getClave().equals(clave)) {
-					System.out.println("******Bienvenido*****"); 
+					
 					encontrado= true;
 				}
 			}
 			if (encontrado ==true) {
-				AplicacionAdministrador();
+				Principal_admin intento = new  Principal_admin(); 
+				//AplicacionAdministrador();
 			}
 			else {
-				System.out.println("\n-----ERROR:NO SE ENCONTRO EL USUARIO-----"); 
+				JOptionPane.showMessageDialog(null, "No se encontro el usuario", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+	
 				
 			}
 		}

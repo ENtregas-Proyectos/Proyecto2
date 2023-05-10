@@ -9,9 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import Consola.Aplicacion;
+import Modelo.CoordinadorInventario;
 
 public class PanelUsuarios extends JPanel implements ActionListener
 {
+	//public CoordinadorInventario Coordinador = new CoordinadorInventario();
+	public Aplicacion aplicacion = new Aplicacion();
 	
 	private JLabel etiquetaImagen;
     private JLabel espacio;
@@ -60,22 +64,11 @@ public class PanelUsuarios extends JPanel implements ActionListener
 	{
 		if(e.getSource( )==btnInicioSesion)
         {
-
-            nombre = JOptionPane.showInputDialog(this ,"Ingrese su nombre");
-            contrasena = JOptionPane.showInputDialog(this ,"Ingrese su Contraseña");
-
-
+            aplicacion.iniciarSesion();
         }
         else if(e.getSource( )==btnCrearCuenta)
-        {
-        	
-        	DialogoIniciarSesion dialogo= new DialogoIniciarSesion( principal );
-            dialogo.setLocationRelativeTo( principal );
-            dialogo.setVisible( true );
-        	
-        
-            
-           
+        {  	
+        	aplicacion.crearCuenta();
       
         }
         
