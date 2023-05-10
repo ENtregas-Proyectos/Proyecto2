@@ -1,5 +1,5 @@
-spa;150
-gym;20
-discoteca;30
-glamping;200
-excursion;300
+discoteca;30.0
+excursion;300.0
+gym;20.0
+spa;150.0
+glamping;200.0

@@ -48,13 +48,13 @@ public class DilogConsultarServicio extends JFrame implements ActionListener
 		
 		ImageIcon imagen ;
 		
-		imagen = new ImageIcon("./data/Cuarto12.png");
+		imagen = new ImageIcon("./data/SPA.jpg");
 		label.setSize(new Dimension (100,100));
 	
 		label.setIcon(imagen);
 		label.setVisible(true);
 		base.add(label,BorderLayout.LINE_START);
-		frame.add(base,BorderLayout.LINE_START);
+		frame.add(base,BorderLayout.CENTER);
 		
 		//parte texto
 		JPanel base2 = new JPanel();
@@ -72,7 +72,7 @@ public class DilogConsultarServicio extends JFrame implements ActionListener
 
 		
 		
-		frame.add(base2,BorderLayout.CENTER);
+		frame.add(base2,BorderLayout.EAST);
 		
 		
 	}

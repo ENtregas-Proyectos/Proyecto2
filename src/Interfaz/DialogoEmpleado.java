@@ -113,8 +113,7 @@ public class DialogoEmpleado extends JFrame implements ActionListener
         }
         else if(e.getSource( )==btnConsultarServicio)
         {
-        	coordi.vaciarArchico();
-			coordi.crearServicios();;
+        	
 			System.out.println("Crear Inventario Listo");
 			coordi.cargarServicios();;
 			coordi.escribirArchivo();
