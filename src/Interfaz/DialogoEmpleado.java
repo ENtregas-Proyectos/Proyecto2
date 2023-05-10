@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Modelo.CoordinadorDeServicios;
+import Modelo.CoordinadorInventario;
 
 public class DialogoEmpleado extends JFrame implements ActionListener
 {
@@ -25,12 +29,14 @@ public class DialogoEmpleado extends JFrame implements ActionListener
     private VentanaPrincipal principal;
 	private JLabel etiquetaImagen;
 	private JLabel tituloEmpleado;
-	private Interfaz.PanelLogo panelLogo;
+	private PanelLogo panelLogo;
+	public CoordinadorDeServicios coordi = new CoordinadorDeServicios();
 
 
 
 	public DialogoEmpleado()
     {
+		
 		setLocationRelativeTo(principal);
 		setTitle("Empleado");
 		getContentPane().setBackground(new Color (244,238,226));
@@ -107,10 +113,17 @@ public class DialogoEmpleado extends JFrame implements ActionListener
         }
         else if(e.getSource( )==btnConsultarServicio)
         {
-        	
-        	DilogConsultarServicio dialogConsultarservicio = new DilogConsultarServicio(principal);
-        	dialogConsultarservicio.setLocationRelativeTo(principal);
-        	dialogConsultarservicio.setVisible( true );
+        	coordi.vaciarArchico();
+			coordi.crearServicios();;
+			System.out.println("Crear Inventario Listo");
+			coordi.cargarServicios();;
+			coordi.escribirArchivo();
+			System.out.println("Cargar Archivo Listo ");
+			
+        	String serv= JOptionPane.showInputDialog(this ,"Ingrese el servicio a consultar");
+			System.out.println(serv);
+			List <String> respuesta = coordi.consultarServicio(serv);;
+			DilogConsultarServicio dialogConsultarservicio = new DilogConsultarServicio(respuesta);
         	
       
         }

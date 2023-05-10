@@ -11,16 +11,19 @@ import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
 import Modelo.CoordinadorDeServicios;
 
-public class DialogAnadirConsumo extends JDialog implements ActionListener
+public class DialogAnadirConsumo extends JFrame implements ActionListener
 {
 
 	private int intSeleccionadoD;
@@ -47,20 +50,34 @@ public class DialogAnadirConsumo extends JDialog implements ActionListener
 	private CoordinadorDeServicios cooServicios;
 	private JLabel nomEmpleadoLabel;
 	private JTextComponent nomEmpleado;
+	private JLabel momentoLabel;
+	private JComponent personaCarga;
+	private PanelLogo panelLogo;
 
 	public DialogAnadirConsumo(VentanaPrincipal principal) 
 	{
-		setSize( 500,300 );
+		
+		
+		cooServicios = new CoordinadorDeServicios();
+		setLocationRelativeTo(principal);
+		getContentPane().setBackground(new Color (244,238,226));
+		setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		setLayout( new GridLayout( 7,1 ) );
+        setSize( 1400,550 );
+        setVisible(true);
+        
 		setLayout( new BorderLayout( ) );
         
-		JPanel panelNorte = new JPanel();
-		panelNorte.setLayout(new GridLayout(1,2));
-		
+		PanelLogo(this);
 		
         JPanel panelWest = new JPanel();
-
-        panelWest.setLayout( new GridLayout( 1,3 ) );		
+        panelWest.setBackground(new Color (244,238,226));
+        panelWest.setLayout( new GridLayout( 7,1 ) );		
 		
+        momentoLabel = new JLabel("En que momento desea realizar el pago? ");
+		momentoLabel.setOpaque(true);
+		panelWest.add(momentoLabel);
+        
 		opcion1 = new JRadioButton("Ahora");
 		panelWest.add(opcion1);
 		
@@ -70,19 +87,24 @@ public class DialogAnadirConsumo extends JDialog implements ActionListener
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(opcion1);bg.add(opcion2);
 		
+		personaCarga = new JLabel("A quien(cual cuarto) se añade el servicio? ");
+		personaCarga.setOpaque(true);
+		panelWest.add(personaCarga);
+		
 		opcionC1 = new JRadioButton("Huésped");
-		add(opcionC1);
+		panelWest.add(opcionC1);
 		
 		opcionC2 = new JRadioButton("Habitación");
-		add(opcionC2);
+		panelWest.add(opcionC2);
 		
 		ButtonGroup bg2 = new ButtonGroup();
 		bg2.add(opcionC1);bg2.add(opcionC2);
 		
-		add(panelWest, BorderLayout.WEST);
+		add(panelWest, BorderLayout.CENTER);
 		
 		
 		JPanel panelEste = new JPanel();
+		panelEste.setBackground(new Color (244,238,226));
         panelEste.setLayout( new GridLayout( 12,1 ) );
 		
 		numHabiLabel = new JLabel("Numero de la habitación: ");
@@ -92,28 +114,28 @@ public class DialogAnadirConsumo extends JDialog implements ActionListener
 		num = new JTextField();
 		panelEste.add(num);
 		
-		nomHuespedLabel = new JLabel("Numero de la habitación: ");
+		nomHuespedLabel = new JLabel("Nombre dle huésped: ");
 		nomHuespedLabel.setOpaque(true);
 		panelEste.add(nomHuespedLabel);
         
 		nom = new JTextField();  
 		panelEste.add(nom);
         
-        servConsumLabel = new JLabel("Numero de la habitación: ");
+        servConsumLabel = new JLabel("Servicio a consumir: ");
         servConsumLabel.setOpaque(true);
         panelEste.add(servConsumLabel);
         
 		serv = new JTextField();
 		panelEste.add(serv);
 		
-		precSinIVALAbel = new JLabel("Numero de la habitación: ");
+		precSinIVALAbel = new JLabel("Precio sin IVA: ");
 		precSinIVALAbel.setOpaque(true);
 		panelEste.add(precSinIVALAbel);
 		
 		precSin= new JTextField();
         panelEste.add(precSin);
 		
-		precTotalLabel = new JLabel("Numero de la habitación: ");
+		precTotalLabel = new JLabel("Precio Total: ");
 		precTotalLabel.setOpaque(true);
 		panelEste.add(precTotalLabel);
         
@@ -126,9 +148,11 @@ public class DialogAnadirConsumo extends JDialog implements ActionListener
         
         nomEmpleado= new JTextField();
         panelEste.add(nomEmpleado);
-		
-		
+        
+        add(panelEste, BorderLayout.EAST);
+        
         JPanel panelSur = new JPanel();
+        panelSur.setBackground(new Color (244,238,226));
 		panelSur.setLayout( new GridLayout( 1,3 ) );
     	
     	espacio = new JLabel();
@@ -140,6 +164,15 @@ public class DialogAnadirConsumo extends JDialog implements ActionListener
         
         espacio = new JLabel();
         panelSur.add(espacio);
+		
+        add(panelSur, BorderLayout.SOUTH);
+	}
+	
+	public void PanelLogo(JFrame frame) {
+		//frame.setResizable(false);
+		panelLogo= new PanelLogo(frame);
+		frame.setLayout(new BorderLayout());
+	    frame.add(panelLogo, BorderLayout.NORTH);
 		
 	}
 
@@ -229,6 +262,10 @@ public class DialogAnadirConsumo extends JDialog implements ActionListener
             {
             	cooServicios.AgregarServicioAHabitacion(nombre, srv, precio, momento, empleado);
             }
+            
+            
+            this.setVisible (false);
+            this.dispose ();
             
             
             

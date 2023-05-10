@@ -1,1 +1,5 @@
-spa;1234.0
+spa;150
+gym;20
+discoteca;30
+glamping;200
+excursion;300

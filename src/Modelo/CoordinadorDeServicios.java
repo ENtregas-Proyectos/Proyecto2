@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Set;
 
 import Modelo.CatalogoServicios;
@@ -32,6 +33,8 @@ public class CoordinadorDeServicios
 		System.out.println("7. Consultar Servicios");
 		System.out.println("8. Consultar cuenta habitacion ");
 		System.out.println("9.Salir\n\n");
+		
+		
 
 		
 		
@@ -130,12 +133,14 @@ public class CoordinadorDeServicios
 			 Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
 			 listaConsumos.put(nombre, nuevo);
 			 continuar=false;
+			 System.out.println(listaConsumos);
 	}
 	}
 	
 	public void consultarServicios() 
 	{
 		 Set<String> nombres = listaServicios.keySet();
+		 System.out.println(listaServicios);
 		 Object[] nuevo = nombres.toArray();
 		 
 		 for ( int a =0 ; a< listaServicios.size(); a++) 
@@ -147,19 +152,29 @@ public class CoordinadorDeServicios
 
 
 
-public void consultarServicio()
-{
-	Servicio aBuscar = listaServicios.get(input("Cual es el nombre del servicio que desea consultar? "));
-	mostrarServicio(aBuscar);
+	public List<String> consultarServicio(String serv)
+	{
 	
-}
+		Servicio aBuscar = listaServicios.get(serv);
+		System.out.println(aBuscar);
+		List<String> respuesta = mostrarServicio(aBuscar);
+		return respuesta;
+	
+		
+	}
 
-private void mostrarServicio(Servicio aBuscar) 
-{
-	System.out.println("El precio del servicio: "+aBuscar.getNombre()+ " es: ");
-	System.out.println("Precio: "+aBuscar.getPrecio());
-
-}
+	private List<String> mostrarServicio(Servicio aBuscar) 
+	{
+		
+		List <String> respuesta= new ArrayList <String>();
+		
+		respuesta.add("Nombre: "+aBuscar.getNombre() + "\n");
+		respuesta.add("Tarifa: "+aBuscar.getPrecio()+ "\n");
+		
+		return respuesta;
+		
+	
+	}
 
 
 public Factura generarFactura(Servicio servicio)

@@ -65,7 +65,6 @@ public class PanelUsuarios extends JPanel implements ActionListener
 		if(e.getSource( )==btnInicioSesion)
         {
             aplicacion.iniciarSesion();
-            this
         }
         else if(e.getSource( )==btnCrearCuenta)
         {  	

@@ -9,13 +9,11 @@ public class Servicio
 
 	private double precio;
 	
-	private ArrayList<Servicio>servicios;
 
 	public Servicio(String nombre, int precio)
 	{
 		this.nombre = nombre;
 		this.precio= precio;
-		this.servicios = new ArrayList<Servicio>();
 		
 	}
 	
