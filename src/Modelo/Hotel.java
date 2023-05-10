@@ -44,7 +44,7 @@ public class Hotel
 				inventario.consultarInventario();
 			}
 			else if (opcion == 7 ) {
-				inventario.consultarHabitacion();	
+				inventario.consultarHabitacion( "101");	
 			}
 			else if (opcion ==8 ) {
 				//FALTA ESTO
