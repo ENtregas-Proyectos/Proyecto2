@@ -60,10 +60,7 @@ public class PanelUsuarios extends JPanel implements ActionListener
 	{
 		if(e.getSource( )==btnInicioSesion)
         {
-
-            nombre = JOptionPane.showInputDialog(this ,"Ingrese su nombre");
-            contrasena = JOptionPane.showInputDialog(this ,"Ingrese su Contraseña");
-
+			
 
         }
         else if(e.getSource( )==btnCrearCuenta)
@@ -81,6 +78,7 @@ public class PanelUsuarios extends JPanel implements ActionListener
         
         else if(e.getSource()== btnCerrarSesion)
         {
+        	
         	
         }
 		

@@ -75,27 +75,22 @@ public class CoordinadorDeServicios
 		
 	}
 	
-	public void AgregarServicioAHabitacion() 
+	public void AgregarServicioAHabitacion(String nombre, String srv, int precio, int rta, String empleado) 
 	{
 		boolean continuar = true;
 		System.out.println("Añadir un servicio a numero de habitacion");
 		while (continuar) 
 		{
 			System.out.println("Cual es el numero de la habitacion?");
-			 String nombre = input(" ");
-			 String empleado = input("Digite su nombre como empleado registrado en el sistema: ");
-			 String srv = input("Digite el nombre del servicio: ");
-			 int precio = Integer.parseInt(input("Cual es el precio del servicio?: "));
 			 Consumo nuevo = new Consumo(nombre, empleado,srv, precio);
 			 listaConsumos.put(nombre, nuevo);
-			 String rta = input("Desea realizar su pago en este momento? ");
-			 if (rta == "si")
+			 if (rta == 1)
 			 {
-				 RegistrarPago();
+				 RegistrarPago(nombre, empleado, srv, precio);
 				 
 			 }
 			 
-			 else if(rta == "no")
+			 else if(rta == 2)
 			 {
 				 continuar = false;
 			 }
@@ -104,26 +99,21 @@ public class CoordinadorDeServicios
 		}
 	}
 	
-	public void AgregarServicioAHuesped() 
+	public void AgregarServicioAHuesped(String nombre, String srv, int precio, int rta, String empleado) 
 	{
 		boolean continuar = true;
 		System.out.println("Añadir un servicio a nombre de huesped");
 		while (continuar) {
 			System.out.println("Cual es el nombre del huesped? ");
-			 String nombre = input(" ");
-			 String empleado = input("Digite su nombre como empleado registrado en el sistema: ");
-			 String srv = input("Digite el nombre del servicio: ");
-			 int precio = Integer.parseInt(input("Cual es el precio del servicio?: "));
 			 Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
 			 listaConsumos.put(nombre, nuevo);
-			 String rta = input("Desea realizar su pago en este momento? ");
-			 if (rta == "si")
+			 if (rta == 1)
 			 {
-				 RegistrarPago();
+				 RegistrarPago(nombre, empleado, srv, precio);
 				 
 			 }
 			 
-			 else if(rta == "no")
+			 else if(rta == 2)
 			 {
 				 continuar = false;
 			 }
@@ -131,16 +121,12 @@ public class CoordinadorDeServicios
 	}
 	}
 	
-	public void RegistrarPago()
+	public void RegistrarPago(String nombre, String empleado, String srv, int precio)
 	{
 		boolean continuar = true;
 		System.out.println("Añadir un servicio a nombre de huesped");
 		while (continuar) {
 			System.out.println("Cual es el nombre del huesped? ");
-			 String nombre = input(" ");
-			 String empleado = input("Digite su nombre como empleado registrado en el sistema: ");
-			 String srv = input("Digite el nombre del servicio: ");
-			 int precio = Integer.parseInt(input("Cual es el precio del servicio?: "));
 			 Consumo nuevo = new Consumo(nombre, empleado, srv, precio);
 			 listaConsumos.put(nombre, nuevo);
 			 continuar=false;
