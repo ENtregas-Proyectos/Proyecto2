@@ -2,27 +2,19 @@ package Modelo;
 
 import java.util.ArrayList;
 
-public class Trabajador 
+public class Trabajador implements Empleado
 
 {
-	private String nombre;
 	private String login;
+	private String nombre;
 	private String clave;
-	private ArrayList<Consumo> serviciosConsumidos;
-	
-	public Trabajador(String nombre, String login, String clave)
-	{
-		
-		this.clave = clave;
-		this.login = login;
-		this.nombre=nombre; 
+
+	public Trabajador(String nombre, String login,String clave) {
+		this.nombre=nombre;
+		this.login=login;
+		this.clave=clave;
 	}
 	
-	public void ingresarConsumo(Consumo consumo)
-	{
-		serviciosConsumidos.add(consumo);
-		
-	}
 	public String getLogin() {
 		return(login);
 	}
@@ -30,6 +22,11 @@ public class Trabajador
 		return(clave);
 	}
 	public String getNombre() {
+		return(nombre);
+	}
+	@Override
+	public String darNombre() {
+		// TODO Auto-generated method stub
 		return(nombre);
 	}
 }

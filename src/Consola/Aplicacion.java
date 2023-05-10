@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import Interfaz.DialogoEmpleado;
 import Interfaz.Pantalla_Habitacion;
 import Interfaz.Principal_admin;
 import Modelo.Administrador;//ESTO
@@ -68,6 +69,12 @@ public class Aplicacion {
 			listaRecepcionista.add(nuevo);
 
 		}
+		
+		else if (opcion ==3 ) 
+		{
+			Trabajador nuevo = new Trabajador(nombre2,login2,contrasena2);
+			listaTrabajadores.add(nuevo);
+		}
 		else {
 			JOptionPane.showMessageDialog(null, "Archivo cargado", "Archivo", JOptionPane.ERROR_MESSAGE);
 		}
@@ -113,8 +120,22 @@ public class Aplicacion {
 				
 			}
 			}
-		else if (opcion ==3) {
-			// LOG IN DE OTROS 
+		else if (opcion ==3) 
+		{
+			for (int a =0 ; a<listaTrabajadores.size();a++) {
+				if (listaTrabajadores.get(a).getLogin().equals(login) && listaTrabajadores.get(a).getClave().equals(clave)) {
+					
+					encontrado= true;
+				}
+			}
+			if (encontrado ==true) {
+				DialogoEmpleado dialogEmpleado = new  DialogoEmpleado(); 
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "No se encontro el usuario", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+	
+				
+			}
 		}
 	}
 	

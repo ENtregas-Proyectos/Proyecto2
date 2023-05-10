@@ -9,12 +9,13 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class DialogoEmpleado extends JDialog implements ActionListener
+public class DialogoEmpleado extends JFrame implements ActionListener
 {
     private JLabel espacio;
     private JButton btnAnadirConsumo;
@@ -24,51 +25,32 @@ public class DialogoEmpleado extends JDialog implements ActionListener
     private VentanaPrincipal principal;
 	private JLabel etiquetaImagen;
 	private JLabel tituloEmpleado;
+	private Interfaz.PanelLogo panelLogo;
 
 
 
 	public DialogoEmpleado()
     {
-        setSize( 500,300 );
+		setLocationRelativeTo(principal);
+		setTitle("Empleado");
+		getContentPane().setBackground(new Color (244,238,226));
+		setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+        setSize( 1400,550 );
         setLayout( new GridLayout( 7,1 ) );
+        setVisible(true);
         
-        JPanel panelNorte = new JPanel();
-		panelNorte.setLayout(new GridLayout(2,3));
-        
-		espacio = new JLabel();
-		panelNorte.add(espacio);
-
-        etiquetaImagen = new JLabel( );
-        ImageIcon icono= new ImageIcon( "./data/Screenshot 2023-05-02 at 8.26.17 PM.png" );
-        panelNorte.add(etiquetaImagen);
-        etiquetaImagen.setSize(50,50);
-        etiquetaImagen.setIcon( icono );
-        
-        
-        espacio = new JLabel();
-        panelNorte.add(espacio);
-        
-        espacio = new JLabel();
-		panelNorte.add(espacio);
-
-        tituloEmpleado = new JLabel("EMPLEADO");
-        panelNorte.add(tituloEmpleado);
-
-        
-        espacio = new JLabel();
-        panelNorte.add(espacio);
-		
-        
+        PanelLogo(this);
         
         JPanel panelCentro = new JPanel();
-		panelCentro.setLayout(new GridLayout(1,8));
+		panelCentro.setLayout(new GridLayout(1,9));
+		panelCentro.setBackground(new Color (244,238,226));
         
         espacio = new JLabel();
         panelCentro.add(espacio);
         
         btnAnadirConsumo= new JButton("AÑADIR CONSUMO");
         btnAnadirConsumo.addActionListener( this );
-        btnAnadirConsumo.setBackground(new Color(126, 205, 250));
+        btnAnadirConsumo.setBackground(new Color (244,238,226));
         panelCentro.add(btnAnadirConsumo);
         
         espacio = new JLabel();
@@ -93,10 +75,23 @@ public class DialogoEmpleado extends JDialog implements ActionListener
         panelCentro.add(btnConsultarConsumo);
         btnConsultarConsumo.addActionListener( this );
         
+        espacio = new JLabel();
+        panelCentro.add(espacio);
+        
+        this.add(panelCentro);
+        
         
         
         
     }
+	
+	public void PanelLogo(JFrame frame) {
+		//frame.setResizable(false);
+		panelLogo= new PanelLogo(frame);
+		frame.setLayout(new BorderLayout());
+	    frame.add(panelLogo, BorderLayout.NORTH);
+		
+	}
 
 
     @Override
