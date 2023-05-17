@@ -55,6 +55,7 @@ public class Principal_admin extends JFrame implements ActionListener{
 		ConsultarHabitacion.addActionListener(this);
 		ConsultarReserva.addActionListener(this);
 		Cerrar.addActionListener(this);
+		Coordinador.iniciar();
 	}
 
 	
